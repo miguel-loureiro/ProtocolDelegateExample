@@ -17,6 +17,7 @@ class ProfileViewController: UIViewController {
     
     @objc fileprivate func settingsBarButtonItemTapped() {
         let controller = SettingsViewController()
+        controller.delegate = self
         navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -89,4 +90,12 @@ class ProfileViewController: UIViewController {
         infoLabel.text = profile.info
     }
 
+}
+
+extension ProfileViewController: SettingsViewControllerDelegate {
+
+    func didChange(_ profile: Profile) {
+
+        apply(profile)
+    }
 }
